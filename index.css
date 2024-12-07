@@ -1,0 +1,112 @@
+body {
+    background-image: url(images/immmmm.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+
+footer {
+    height: 50px;
+    background-color: #333;
+    text-align: center;
+    padding: 1px 0;
+    width: 100%;
+    color: wheat;
+    border-radius: 2%;
+}
+
+div.container {
+    background-image: url('images/immmmm.jpg');
+    background-position: center;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; 
+}
+@keyframes textGlow {
+    0% {
+        color: #ffffff;
+        text-shadow: 1px 2px 3px 0.5px;
+    }
+    100% {
+        color: #cbbfc4;
+        text-shadow: 0 0 10px #8a7b82, 0 0 20px #d7c8ce, 0 0 30px #c88ca6, 0 0 40px #ebe1e5;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+h1 {
+    background-color: rgb(40, 42, 40);
+    color: rgb(236, 78, 78);
+    padding: 10px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px rgba(203, 167, 167, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.head {
+    text-align: center;
+    text-transform: capitalize;
+    background-color: aqua;
+    margin: 10px;
+    padding: 10px;
+    font-size: 2rem;
+    animation: fadeIn 3s infinite alternate;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgb(73, 68, 59);
+    padding: 10px;
+}
+
+menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgb(197, 221, 221);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+menu a {
+    color: rgb(137, 19, 19);
+    background-color: #a78080;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+menu a:hover {
+    background-color: rgba(150, 146, 138, 0.7);
+}
+
+footer {
+    size: 1vh;
+    color: rgb(230, 211, 211);
+    text-align: center;
+    margin-top: 50%;
+    background-color: rgb(35, 36, 31);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

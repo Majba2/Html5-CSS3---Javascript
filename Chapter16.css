@@ -1,0 +1,86 @@
+body
+{
+    color: black;
+    border: aqua;
+    background-color: rgb(115, 161, 127);
+}
+p {
+    color: red;
+    text-align: center;
+    text-decoration-line: overline underline;
+    text-decoration-thickness: 2px;
+
+    text-decoration-color: rgb(185, 179, 179);
+    }
+    p {
+        text-decoration-line: underline;
+        }
+        .p1 {
+        text-decoration-style: double;
+        }
+        .p2 {
+        text-decoration-style: dotted;
+        }
+        .p3 {
+        text-decoration-style: dashed;
+        }
+        .p4 {
+        text-decoration-style: wavy;
+        }
+        pre
+        {
+            font-size: 15px;
+            color: beige;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: goldenrod;
+            text-decoration: underline rgb(85, 72, 72) wavy 3px;
+            text-transform:capitalize;
+            white-space: pre-wrap;
+            text-align: end;
+        }
+        .pp 
+        {
+            white-space: pre-wrap;
+           
+        }
+        .test-clip {
+            white-space: nowrap;
+            width: 200px;
+            border: 1px solid #000000;
+            overflow: hidden;
+            text-overflow: clip;
+            }
+            .test-ellipsis {
+                white-space: nowrap;
+                width: 200px;
+                border: 1px solid #000000;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                } 
+                .test-word-wrap {
+                    text-align: center;
+                  text-shadow: 1px 2px 3px;
+                    text-decoration: none;
+                    color: black;
+                    background-repeat: no-repeat;
+                    background-color: aqua;
+                    width: 200px;
+                    border: 1px solid #000000;
+                    word-wrap: break-word;
+                    }
+                    .test-keep-all {
+                        word-break: keep-all;
+                        }
+                        .test-break-word {
+                            word-break: break-word;
+                            }
+                            .test-break-all {
+                                word-break: break-all;
+                                }
+        menu
+        {
+            letter-spacing: 1px;
+            text-align: center;
+            background-color:white;
+            font-size: 20px;
+        }

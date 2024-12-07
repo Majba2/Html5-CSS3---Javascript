@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Class</title>
+</head>
+<h1 style="text-align: center;">Chapter-8</h1>
+<h2 style="text-align: center;">ChapterName:-Classes</h2>
+<body>
+ <h2>
+    8.1-Reusable Class
+ </h2>
+    <script>
+ class Student
+ {
+    constructor(firstName, lastName, admissonDate)
+    {
+   this.firstName=firstName;
+   this.lastName=lastName;
+   this.admissonDate=admissonDate;
+    }
+    swapNames()  //create a method to swape name
+    {
+        [this.firstName,this.lastName]=[this.lastName,this.firstName];
+    }
+ }
+const newStudent=new Student('Majba','Uddin',new Date(2024,6,30));
+newStudent.swapNames();
+console.log(`Name after swapped : `, newStudent.firstName); //here the name willbe swap!
+    </script>
+    <h2> 8.2- Adding properties to a class!</h2>
+    <script>
+   class Employee {
+    constructor(firstName, lastName, dateofBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateofBirth = dateofBirth;
+    }
+    // Getter method to calculate the age based on the date of birth
+    get age() {
+        if (this.dateofBirth instanceof Date) {
+            const today = new Date();
+            let age = today.getFullYear() - this.dateofBirth.getFullYear();  // Year difference
+            const monthDiff = today.getMonth() - this.dateofBirth.getMonth();      
+            // Adjusting the age if the birthdate hasn't occurred yet in the current year
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < this.dateofBirth.getDate())) {
+                age -= 1;
+            }
+            return age;
+        } else {
+            return "Invalid Date";
+        }
+    }
+}
+// Creating an instance of the Employee class
+const newEmployee = new Employee('Habib', 'Khan', new Date(2002, 3, 22));
+console.log(`Current age of employee is: `,newEmployee.age);
+    </script>
+    <h2>8.3-Giving a Class a Better String Representation!</h2>
+    <script>
+class Car {
+    constructor(brand, model, year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+    toString() {
+        return `${this.year} ${this.brand} ${this.model}`;
+    }
+}
+const myCar = new Car('Toyota', 'Corolla', 2020);
+console.log(myCar.toString());
+const message = 'I have a ' + myCar;
+console.log(message); 
+console.log(`${myCar}`); 
+    </script>
+    <h2>8.4-Using the Constructor Pattern to Make a Custom Class</h2>
+    <script>
+        function Book(title, author) {
+    this.title = title;   
+    this.author = author; 
+
+this.swapTitles = function() {
+    [this.title, this.author] = [this.author, this.title];
+}
+        }
+const newBook = new Book('1984', 'George Orwell');
+newBook.swapTitles();
+console.log(newBook.title); 
+console.log(newBook.author); 
+    </script>
+    <h2>8.5-Supporting Method Chaining in Your Class</h2>
+    <script>
+        class Movie {
+    constructor(title, director, rating, releaseDate) {
+        this.title = title;          
+        this.director = director;   
+        this.rating = rating;        
+        this.releaseDate = releaseDate; 
+    }
+    adjustRating(percent) {
+        const increase = this.rating * (percent / 100); 
+        this.rating += increase; 
+        return this; 
+    }
+    updateReleaseDate() {
+        this.releaseDate = new Date(); 
+        return this; 
+    }
+}
+const myMovie = new Movie('Inception', 'Christopher Nolan', 8.8, new Date(2010, 6, 16));
+console.log(myMovie.adjustRating(10).updateReleaseDate());
+    </script>
+    <h3>8.6 Adding Static Methods to a Class</h3>
+    <script>
+        class User {
+    constructor(username, email) {
+        this.username = username; 
+        this.email = email;       
+        this.createdAt = new Date(); 
+    }
+    // Static method to check if two users are the same based on their email
+    static isSameUser(user1, user2) {
+        return user1 instanceof User && user2 instanceof User 
+            && user1.email === user2.email; 
+    }
+    // Static property to define the default role for users
+    static get defaultRole() {
+        return 'viewer'; 
+    }
+}
+const user1 = new User('majba_uddin', 'samiul@example.com');
+const user2 = new User('samiul_hasan', 'majba@example.com');
+const areSameUsers = User.isSameUser(user1, user2);
+console.log(areSameUsers); 
+console.log(User.defaultRole);
+    </script>
+    <h3>8.7-Using a Static Method to Create Objects</h3>
+    <script>
+        class Bike {
+    constructor(brand, model, type) {
+        this.brand = brand;  
+        this.model = model; 
+        this.type = type;    
+    }
+    // Static method to create an electric bike
+    static createElectricBike(brand, model) {
+        return new Bike(brand, model, 'Electric'); 
+    }
+ // Static method to create a mountain bike
+    static createMountainBike(brand, model) {
+        return new Bike(brand, model, 'Mountain');
+    }
+}
+const electricBike = Bike.createElectricBike('Tesla', 'Model EBike');
+console.log(electricBike);
+const mountainBike = Bike.createMountainBike('Giant', 'XTC Advanced');
+console.log(mountainBike); 
+    </script>
+    <h3>8.8-Inheriting Functionality from Another Class!    </h3>
+    <script>
+        class Animal {
+    constructor(name, age) {
+        this.name = name; 
+        this.age = age;   
+    }
+
+    speak() {
+        return `${this.name} makes a noise.`; 
+    }
+}
+class Dog extends Animal //inheritance
+{
+    constructor(name, age, breed) {
+        super(name, age); 
+        this.breed = breed; 
+    }
+    speak() {
+        return `${this.name} barks.`; 
+    }
+    // Static method to create a puppy
+    static createPuppy(name) {
+        return new Dog(name, 0, 'unknown');
+    }
+}
+const animal = new Animal(' Animal', 5);
+console.log(animal.speak()); 
+const dog = new Dog('Buddy', 3, 'Golden Retriever');
+console.log(dog.speak()); 
+const puppy = Dog.createPuppy('Charlie');
+console.log(puppy.speak()); 
+console.log(`Puppy Age: ${puppy.age}`); 
+console.log(`Puppy Breed: ${puppy.breed}`);
+    </script>
+    <h3>8.9-Organizing Your JavaScript Classes with Modules</h3>
+    <script>
+        // SimpleCalculator class to perform basic calculations
+        class SimpleCalculator {
+            // Static method to add two numbers
+            static add(a, b) {
+                return a + b; 
+            }
+        }
+        // Using the SimpleCalculator to add numbers
+        const num1 = 10;
+        const num2 = 5;
+        const sum = SimpleCalculator.add(num1, num2); 
+        console.log(`Sum: ${sum}`); 
+        document.body.innerHTML += `<p>Sum: ${sum}</p>`;
+    </script>   
+</body>
+</html>

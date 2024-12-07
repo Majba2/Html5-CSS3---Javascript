@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter-12</title>
+</head>
+<h1 style="text-align: center;">
+    CHAPTER 12 <br>
+Working with HTML
+</h1>
+<body>
+    <h3>12.1 Accessing a Given Element and Finding Its Parent and Child Elements  </h3>
+    <div id="parent-div">
+        <div id="my-special-element">
+            <p>Child 1</p>
+            <p>Child 2</p>
+        </div>
+    </div>    
+    <script>
+        // Access a specific element by ID and find its parent and children
+const specialElement = document.getElementById('my-special-element');
+const parentElement = specialElement.parentElement;
+const childElements = specialElement.children;
+
+console.log('Parent Element:', parentElement);
+console.log('Child Elements:', childElements);
+    </script>
+<h3>12.2 Traversing the Results from querySelectorAll() with forEach()</h3>
+<ul>
+    <li class="list-item">First item</li>
+    <li class="list-item">Second item</li>
+    <li class="list-item">Third item</li>
+</ul>
+<script>
+// Use querySelectorAll to find multiple elements and loop through them
+const listItems = document.querySelectorAll('.list-item');
+listItems.forEach((item, index) =>
+ {
+    console.log(`List Item ${index + 1}:`, item.textContent);
+});
+</script>
+<h3>12.3 Adding Click Functionality to an Element</h3>
+<button id="myButton">Click Me</button>
+<script>
+    // Add a click event listener to a button
+const myButton = document.getElementById('myButton');
+
+myButton.addEventListener('click', () => {
+    console.log('Button was clicked!');
+});
+</script>
+<h3>12.4 Finding All Elements That Share an Attribute</h3>
+<div data-item="item1">First Item</div>
+<div data-item="item2">Second Item</div>
+<div data-item="item3">Third Item</div>
+<script>
+    // Find all elements with a specific attribute
+const dataItems = document.querySelectorAll('[data-item]');
+dataItems.forEach((item, index) => {
+    console.log(`Item ${index + 1} with data-item attribute:`, item.getAttribute('data-item'));
+});
+</script>
+<h3>12.5 Accessing All Elements of a Specific Type</h3>
+<p>First paragraph content.</p>
+<p>Second paragraph content.</p>
+<p>Third paragraph content.</p>
+<script>
+// Access all paragraph elements
+const paragraphs = document.getElementsByTagName('p');
+
+for (let i = 0; i < paragraphs.length; i++) {
+    console.log(`Paragraph ${i + 1}:`, paragraphs[i].textContent);
+}
+</script>
+<h3>12.6 Discovering Child Elements Using the Selectors API</h3>
+<div id="container">
+    <div>First child div</div>
+    <div>Second child div</div>
+    <div>Third child div</div>
+</div>
+<script>
+// Discover child elements of a specific container using querySelectorAll
+const container = document.getElementById('container');
+const childDivs = container.querySelectorAll('div');
+
+childDivs.forEach((div, index) => {
+    console.log(`Child Div ${index + 1}: ${div.textContent}`);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript</title>
+</head>
+<h1 style="text-align: center; font-size: 20px;">CHAPTER 10 <br>
+    Errors and Testing</h1>
+<body>
+    <h3>10.1-Catching and Neutralizing an Error</h3>
+    <script>
+// Function to calculate the square root
+function calculateSquareRoot(number) {
+    try {
+        if (number < 0) {
+            throw new Error("Cannot calculate the square root of a negative number."); r
+        }
+        const result = Math.sqrt(number); 
+        console.log(`The square root of ${number} is ${result}`); 
+    } catch (error) {
+        console.error(error.message); 
+    } finally {
+        console.log('Square root calculation attempted.'); 
+    }
+}
+// Example usage
+calculateSquareRoot(16); 
+calculateSquareRoot(-4);
+    </script>
+    <h3>10.2-Catching Different Types of Errors</h3>
+    <script>
+// Function to get an element from an array by index
+function getElement(array, index) {
+    try {
+        // Check if the input is an array
+        if (!Array.isArray(array)) {
+            throw new TypeError('Input is not an array.');
+        }
+        // Check if the index is within bounds
+        if (index < 0 || index >= array.length) {
+            throw new RangeError('Index is out of bounds.');
+        }
+        return array[index]; // Return the element at the given index
+    } catch (error) {
+ 
+        if (error instanceof TypeError) {
+            console.log('Type Error:', error.message); 
+        } else if (error instanceof RangeError) {
+            console.log('Range Error:', error.message);
+        } else {
+            console.log('Unexpected Error:', error.message); 
+        }
+    } finally {
+        console.log('Operation completed.');
+    }
+}
+// Example usage
+console.log(getElement([1, 2, 3], 1)); 
+console.log(getElement([1, 2, 3], 5));
+console.log(getElement('not an array', 0)); 
+    </script>
+    <h3>10.3-Catching Asynchronous Errors</h3>
+    <script>
+// Using XMLHttpRequest
+const xhrRequest = new XMLHttpRequest();
+xhrRequest.onerror = function errorHandler() {
+    console.log('Error occurred with XMLHttpRequest');
+};
+xhrRequest.open('GET', 'http://noserver'); 
+xhrRequest.send();
+// Using Fetch API
+fetch('http://noserver') // Invalid URL
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        console.log('Fetch succeeded');
+    })
+    .catch((error) => {
+        console.log('Error occurred with fetch:', error.message);
+    });
+
+// Using async/await
+async function fetchData() {
+    try {
+        const response = await fetch('http://noserver');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        console.log('Async/Await fetch succeeded');
+    } catch (error) {
+        console.log('Error occurred with async/await:', error.message);
+    }
+}
+// Call the async function
+fetchData().then(() => {
+    console.log('Async function completed');
+});
+    </script>
+    <h3>10.4-Detecting Unhandled Errors
+    </h3>
+    <script>
+// Handle unhandled errors globally
+window.onerror = (message, url, lineNo, columnNo, error) => {
+    console.log(`An unhandled error occurred: ${message} in ${url} at line ${lineNo}, column ${columnNo}`);
+};
+
+// Handle unhandled promise rejections globally
+window.onunhandledrejection = (event) => {
+    console.log('An unhandled rejection occurred:', event.reason);
+    // Prevent the default error handling
+    event.preventDefault();
+};
+
+// Cause an unhandled synchronous error
+function throwError() {
+    throw new Error('Synchronous error!');
+}
+
+// Cause an unhandled asynchronous error with a promise
+const faultyPromise = new Promise((resolve, reject) => {
+    throw new Error('Asynchronous error in promise!');
+});
+
+// Cause an unhandled rejection with a promise
+const rejectedPromise = new Promise((resolve, reject) => {
+    reject(new Error('Another asynchronous error!'));
+});
+
+// Call the function to cause a synchronous error
+try {
+    throwError();
+} catch (error) {
+    console.log('Caught a synchronous error:', error.message);
+}
+
+// Call the faulty promise (this will trigger window.onunhandledrejection)
+faultyPromise;
+
+// Call the rejected promise (this will also trigger window.onunhandledrejection)
+rejectedPromise;
+    </script>
+    <h3>10.5-Throwing a Standard Error</h3>
+    <script>
+// Function to divide two numbers with error handling
+function safeDivision(number, divisor) {
+    // Check if the divisor is zero
+    if (divisor === 0) {
+        throw new Error('Error: Dividing by zero is not allowed.');
+    } else {
+        return number / divisor;
+    }
+}
+
+try {
+    const result = safeDivision(100, 0); 
+    console.log(`Result: ${result}`);
+} catch (error) {
+    // Shows the custom error message
+    console.log(error.message); 
+}
+
+// Another function to validate age
+function validateAge(age) {
+    const maxAge = 120;
+    const minAge = 1;
+
+    if (age < minAge || age > maxAge) {
+        throw new RangeError(`Error: Age [${age}] must be between ${minAge} and ${maxAge}.`);
+    }
+}
+
+// Catch the error if it occurs
+try {
+    validateAge(150);
+} catch (error) {
+    // Shows the custom error message
+    console.log(error.message); 
+}
+
+// Function to check if input is a number
+function checkNumber(value) {
+    if (typeof value !== 'number') {
+        throw new TypeError(`Error: Value [${value}] is not a number.`);
+    }
+}
+
+// Catch the error if it occurs
+try {
+    checkNumber('text'); 
+} catch (error) {
+    // Shows the custom error message
+    console.log(error.message); 
+    </script>
+    <h3>10.6-Throwing a Custom Error</h3>
+    <script>
+// Custom error class for invalid age
+class InvalidAgeError extends Error {
+    constructor(age) {
+        super(`Invalid age: ${age}. Age must be between 1 and 120.`);
+        this.name = 'InvalidAgeError';
+        this.age = age;
+
+        // Clean up the stack trace
+        if (Error.captureStackTrace) {
+            Error.captureStackTrace(this, InvalidAgeError);
+        }
+    }
+}
+
+// Function to set the age
+function setAge(age) {
+    if (age < 1 || age > 120) {
+        throw new InvalidAgeError(age); 
+    }
+    console.log(`Age set to: ${age}`);
+}
+
+// Try to set an invalid age
+try {
+    setAge(150);
+} catch (error) {
+    console.log(`An error occurred: ${error.message}`);
+    if (error instanceof InvalidAgeError) {
+        console.log(`Provided age: ${error.age}`); 
+    }
+}
+    </script>
+    // <h3>10.7-Writing Unit Tests for Your Code</h3>
+    // <script>
+
+     </script>
+</body>
+</html> 

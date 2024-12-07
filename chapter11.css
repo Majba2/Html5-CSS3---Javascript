@@ -1,0 +1,12 @@
+div {
+    height: 10px;
+    border-color: rgb(189, 188, 188);
+    border-style: solid ;
+    margin: 1px 1px 1px 1px;
+    border-width: 5px 10px 15px 20px;
+    }
+    body
+    {
+        background-color: bisque;
+    }
+    

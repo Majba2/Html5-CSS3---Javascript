@@ -1,0 +1,94 @@
+/* Basic Styles */
+body {
+    background-color: #333;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+menu{
+ background-color: rgb(86, 161, 105);
+
+}
+header {
+    color: rgb(90, 67, 67);
+    text-align: center;
+    padding: 1em;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: rgb(235, 231, 231);
+}
+
+nav ul li a:hover {
+    background-color: #8d5959;
+    border-radius: 1em;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+article, aside {
+    background-color: #f4f4f4;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+article {
+    flex: 2;
+}
+
+aside {
+    flex: 1;
+    margin-left: 1em;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+
+    aside {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 10px;
+    }
+}

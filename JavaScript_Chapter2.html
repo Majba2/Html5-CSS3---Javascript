@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter-2</title>
+</head>
+<h1>CHAPTER 2 <br>
+    Strings and Regular Expressions</h1>
+<body>
+    <h3>2.1 Checking for an Existing, Nonempty String</h3>
+    <script>                    //testing msg is string or not?
+         const msg="This is me!"
+         // const msg=50;  
+        if (typeof msg === 'string' && msg.length > 0)
+        {
+           console.log(`This is a string :`,msg,`string lenth is :`,msg.length);    //chcked string length
+        } 
+        else{
+            console.log('This is not a string msg');
+        }
+       //removing white space in between str!
+             const str='          This is not fair!!                   ';
+                  console.log(str.trim());
+         </script>   
+         <h3>2.2 Converting a Numeric Value to a Formatted String        </h3>
+ <script>
+            const thisNumber = 84;
+          const thisStr = thisNumber.toString();   //converting number to string:
+          console.log(thisStr);
+    //     // const thisStr = 1242.0055;
+    //    const fixedString = someeNumber.toFixed(1);
+    //      const precisionString=someeNumber.toPrecision(5);
+    //      console.log(fixedString);
+</script>
+<h3>2.4 Inserting Emojis</h3>
+<script>
+    const pizza = '🍕';
+        const pizzaStory = 'I like pizzas ' + pizza; 
+        console.log(pizzaStory);
+</script> 
+<h3>2.5 Using Template Literals for Clearer String Concatenation</h3>
+   <div id="div1"></div> 
+    <div id="div2"></div>
+    <script>
+        var car = {
+              name: "BMW",
+            color: "Blue",
+            make: "Ford",
+            year: 2012,
+            model: 'BM-20321',
+            getInfo: function () {
+                return "Vehicle: " + this.name + ' ' + this.color + ' ' + this.year + ' ' + this.make + ' ' + this.model;
+            }
+        };  
+        console.log(`Car details: `,car.getInfo());  //
+    </script>
+<h3>2.6 Performing a Case-Insensitive String Comparison</h3>
+    <script>
+      let str1 = "this iS Mohammed Majba Uddin";
+let str2 = "This IS MOHAMMED Majba Uddin";
+// Checking for case-insensitive equality using toLowerCase
+if (str1.toLowerCase() === str2.toLowerCase()) {
+    console.log('Both strings match using toLowerCase.');
+}
+// Checking for case-insensitive equality using localeCompare
+if (str1.localeCompare(str2, undefined, { sensitivity: 'accent' }) === 0) 
+{
+    console.log('Both strings match using localeCompare.');
+}
+</script>
+ <h3>2.7 Checking If a String Contains a Specific Substring</h3>
+ <script>
+     var string = "Our training institution name is ussl"; 
+     var substring = "u"; // The substring we are looking 
+     if (string.includes(substring))         //substring check
+     {
+         console.log(`The substring "${substring}" was found in the string "${string}".`);
+     } else 
+     {
+         console.log(`The substring "${substring}" was not found in the string "${string}".`);
+     }
+ </script>
+ <h3>2.8 Replacing All Occurrences of a String</h3>
+ <script>
+    const text = 'I know not where I was born, save that the castle was' +
+        ' infinitely old and infinitely horrible.';
+    const changedText = text.replaceAll('infinitely', 'somewhat');
+    console.log(changedText);
+ </script>
+ <h3>2.9 Replacing HTML Tags with Named Entities</h3>
+ <p id="output"></p>
+ <script>
+   const unsafeHtml = '<h1>Welcome to <em>JavaScript</em> Programming!</h1>';
+// Replace < and > with safe characters
+const safeHtml = unsafeHtml
+    .replaceAll('<', '&lt;')  // Replace < with &lt;
+    .replaceAll('>', '&gt;');  // Replace > with &gt;
+// Display the safe HTML string on the page
+document.getElementById('output').innerHTML = safeHtml;
+// Log the safe HTML string to the console
+console.log(safeHtml);
+ </script>
+ <h3>2.10 Using a Regular Expression to Replace Patterns in a String</h3>
+<script>
+        let String = "Hello, World! It's my programming code.";
+    let newStr = String.replace(/o/g, "0");
+    console.log(newStr); 
+</script>
+<h3>2.11 Extracting a List from a String</h3>
+<script>
+        const textline = 'This is one sentence. This is a sentence with a list of items:' +
+        'cherries, oranges, apples, bananas. That was the list of items.';
+     const start = textline.indexOf(':');
+      const end = textline.indexOf('.', start);
+     console.log(end); 
+</script>
+<h3>2.12 Finding All Instances of a Pattern</h3>
+<script>
+    const lookString = 'Now is the time and this is the time and that is the time';
+    const regex = /t\w*e/g;
+    const matches = lookString.matchAll(regex);
+    for (const match of matches) {
+        console.log(`at ${match.index} we found ${match[0]}`);
+    } 
+</script>
+<h3>2.13 Removing Whitespace from the Beginning and End of a String</h3>
+<script>
+    const firstString= "                                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old."
+                                'Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia,                             ';
+       const trimString= firstString.trim();
+       console.log(`After removing white spaces: `,trimString);
+</script>
+<h3>2.14 Converting the First Letter of a String to Uppercase</h3>
+<script>
+const before = 'if you cut an orange, there is a risk it will orbisculate.';
+    const data = before[0].toUpperCase() + before.slice(1);
+    console.log(data);
+</script>
+<h3>2.15 Validating an Email Address</h3>
+<script>
+    const rightEmail = "majba@gmail.com";  
+const wrongEmail = "majba@gmail .com"; 
+const check = /\S+@\S+\.\S+/;
+if (check.test(rightEmail)) {
+    console.log('Valid email:', rightEmail);
+}
+if (check.test(wrongEmail)) {
+    console.log('Invalid email:', wrongEmail);
+}
+</script>
+</body>
+</html>

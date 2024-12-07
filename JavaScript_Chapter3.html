@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter-3</title>
+</head>
+<h1 style="text-align: center;">CHAPTER 3 <br>
+    Numbers</h1>
+<body>
+    <h3>3.1 Generating Random Numbers</h3>
+ <script>
+// Generate a random number between 1 and 100
+const randomNum100 = Math.floor(Math.random() * 100) + 1;
+console.log('Random number between 1 and 100:', randomNum100);
+ </script>
+ <h3>3.2 Generating Cryptographically Secure Random Numbers</h3>
+ <script>
+    // Generate cryptographically secure random numbers
+const array = new Uint32Array(10);
+window.crypto.getRandomValues(array);
+console.log('Cryptographically secure random numbers:', array);
+ </script>
+ <h3>3.3 Rounding to a Specific Decimal Place</h3>
+ <script>
+    // Function to round to specific decimal places
+function roundToDecimal(number, decimalPlaces) {
+    const factor = Math.pow(10, decimalPlaces);
+    return Math.round(number * factor) / factor;
+}
+const numberToRound = 3.1415926535;
+const rounded = roundToDecimal(numberToRound, 1);
+console.log('Number rounded to 3 decimal places:', rounded);
+ </script>
+ <h3>3.4 Preserving Accuracy in Decimal Values</h3>
+ <script>
+    // Preserving decimal accuracy with proper multiplication and division
+const price = 0.1 + 0.2;
+console.log('Without adjustment:', price); 
+// Adjusting to preserve accuracy
+const accuratePrice = (Math.round((0.1 + 0.2) * 100) / 100).toFixed(2);
+console.log('With accurate rounding:', accuratePrice); // 0.30
+ </script>
+ <h3>3.5 Converting a String to a Number</h3>
+ <script>
+// Convert a string to a number
+const numericString = '56';
+const num = Number(numericString);
+console.log('Converted string to number:', num);
+ </script>
+ <h3>3.6 Converting a Decimal to a Hexadecimal Value</h3>
+ <script>
+// Convert a decimal number to a hexadecimal value
+const decimalNum = 255;
+const hexValue = decimalNum.toString(16);
+console.log('Hexadecimal value:', hexValue);
+ </script>
+ <h3>3.7 Converting Between Degrees and Radians</h3>
+ <script>
+    // Functions to convert between degrees and radians
+function degreesToRadians(degrees) {
+    return degrees * (Math.PI / 180);
+}
+function radiansToDegrees(radians) {
+    return radians * (180 / Math.PI);
+}
+const degrees = 180;
+const radians = Math.PI;
+console.log(`${degrees} degrees in radians:`, degreesToRadians(degrees));
+console.log(`${radians} radians in degrees:`, radiansToDegrees(radians));
+ </script>
+ <h3>3.8 Calculating the Length of a Circular Arc</h3>
+ <script>
+const value = 60;
+const data = 4;
+// Convert value to radians
+const numbers = value * (Math.PI / 180);
+// Calculate the arc length
+const arcLength = data * data;
+console.log(`Arc length for a ${value} degree arc and radius ${data}:= `, arcLength);
+ </script>
+ <h3>3.9 Manipulating Very Large Numbers with BigInt</h3>
+ <script>
+const largeNumber = BigInt('1234567890123456789012345678901234567890');
+const anotherLargeNumber = BigInt('9876543210987654321098765432109876543210');
+// Perform arithmetic with BigInt
+const sum = largeNumber + anotherLargeNumber;
+const product = largeNumber * anotherLargeNumber;
+console.log('Sum of BigInt numbers:', sum);
+console.log('Product of BigInt numbers:', product);
+ </script>
+</body>
+</html>

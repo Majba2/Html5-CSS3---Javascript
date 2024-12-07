@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        body {
+            margin: auto;
+            background-color: rgb(49, 209, 209);
+            background-position: center;
+            background-image: url('ss.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        h1 {
+            text-align: center;
+            text-shadow: 1px 1.5px 2px;
+            background-color: rgb(26, 212, 116);
+        }
+        menu {
+            text-align: center;
+            color: black;
+            background-color: rgb(121, 208, 243);
+            word-spacing: 3px;
+            font-family: sans-serif;
+        }
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 30px;
+        }
+        svg {
+            padding: 2vh;
+            animation: rotate 5s linear infinite, bounce 2s ease-in-out infinite;
+            width: 150px;
+            height: 150px;
+        }
+        /* Rotation animation */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Bounce animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Chapter-7</h1> 
+    <header>
+        <menu>
+            <a href="index.html">HomePage</a>
+            <a href="Html&CSS_Chapter1.html">Chapter 1</a>
+            <a href="Html&CSS_Chapter2.html">Chapter 2</a>
+            <a href="Html&CSS_Chapter3.html">Chapter 3</a>
+            <a href="Html&CSS_Chapter4.html">Chapter 4</a>
+            <a href="Html&CSS_Chapter5.html">Chapter 5</a>
+            <a href="Html&CSS_Chapter6.html">Chapter 6</a>
+            <a href="Html&CSS_Chapter11.html">Chapter 11</a>
+            <a href="Html&CSS_Chapter12.html">Chapter 12</a>
+            <a href="Html&CSS_Chapter13.html">Chapter 13</a>
+            <a href="Html&CSS_Chapter14.html">Chapter 14</a>
+            <a href="Html&CSS_Chapter15.html">Chapter 15</a>
+            <a href="Html&CSS_Chapter16.html">Chapter 16</a>
+            <a href="Html&CSS_Chapter17.html">Chapter 17</a>
+            <a href="Html&CSS_Chapter18.html">Chapter 18</a>
+            <a href="Html&CSS_Chapter19.html">Chapter 19</a>
+            <a href="Html&CSS_Chapter20.html">Chapter 20</a>
+            <a href="Html&CSS_Chapter21.html">Chapter 21</a>
+            <a href="Html&CSS_Chapter22.html">Chapter 22</a>
+        </menu>
+    </header>
+
+    <div class="svg-container">
+        <!-- Circle -->
+        <svg>
+            <circle cx="75" cy="75" r="60" fill="yellow" stroke="blue" stroke-width="4" />
+        </svg>
+
+        <!-- Triangle -->
+        <svg>
+            <polygon points="75,10 10,140 140,140" fill="green" stroke="purple" stroke-width="4" />
+        </svg>
+
+        <!-- Parallelogram -->
+        <svg>
+            <polygon points="30,30 150,30 120,140 0,140" fill="pink" stroke="brown" stroke-width="4" />
+        </svg>
+
+        <!-- Rhombus -->
+        <svg>
+            <polygon points="75,10 140,75 75,140 10,75" fill="lightblue" stroke="orange" stroke-width="4" />
+        </svg>
+    </div>
+</body>
+</html>

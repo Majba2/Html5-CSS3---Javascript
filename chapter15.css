@@ -1,0 +1,19 @@
+body
+{
+    color: antiquewhite;
+    background-color: rgb(61, 85, 101);
+}
+p {
+    animation-timing-function: ease-out;
+    animation-duration: 2s;
+    text-align: center;
+    text-decoration: wavy;
+    background-color: red;
+    }
+.dd
+    {
+        text-align: justify;
+        text-transform: capitalize;
+        color: rgb(59, 66, 59);
+        background-color: rgb(204, 181, 209);
+    }

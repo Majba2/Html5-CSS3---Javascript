@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter-4</title>
+</head>
+<h1 style="text-align: center;">CHAPTER 4 <br>
+    Dates
+    </h1>
+<body>
+  <h3>4.1 Getting the Current Date and Time</h3>
+  <script>
+  // Get the current date and time
+const currentDate = new Date();
+console.log('Current Date and Time:', currentDate);
+console.log(`This is : `,currentDate.getFullYear()); //year
+console.log(`It's the month of :`, currentDate.getMonth());
+  </script>
+  <h3>   4.2 Converting a String to a Date </h3>
+  <script>
+    // Convert a string to a Date object
+const dateString = '2024-10-14T10:30:00';
+const dateObject = new Date(dateString);
+console.log('Converted Date:', dateObject);
+  </script>
+  <h3>4.3 Adding Days to a Date</h3>
+  <script>
+    const today = new Date();
+const presentDay = today.getDate();
+// Where will be three weeks in the future?
+today.setDate(presentDay + 28);
+console.log(`Four weeks from today is : ${today}`);
+  </script>
+  <h3>4.4 Comparing Dates and Testing Dates for Equality</h3>
+  <script>
+   const olddate = new Date(2024, 1, 1);
+const newdate = new Date(2024, 1, 1);
+// Compare the two date objects directly
+console.log('Are olddate and newdate the same object?', olddate === newdate);
+// Compare their time values
+console.log('Do olddate and newdate represent the same date?', olddate.getTime() === newdate.getTime()); 
+// Additional comparison using console.log with descriptions
+console.log(`olddate : ${olddate}, newdate : ${newdate}`); 
+  </script>
+  <h3>4.5 Calculating the Time Elapsed Between Two Dates</h3>
+  <script>
+    const dateOfBirth = new Date(2002, 3, 5); 
+    const presentDate = new Date(2024, 9, 13); 
+    // Calculate the age in milliseconds
+    const ageInMilliseconds = presentDate - dateOfBirth;
+    // Convert milliseconds to years (1 year ≈ 365.25 days to account for leap years)
+    const millisecondsPerYear = 1000 * 60 * 60 * 24 * 365.25; 
+    const ageInYears = ageInMilliseconds / millisecondsPerYear;
+    console.log(`Age in years: ${Math.floor(ageInYears)}`); 
+  </script>
+  <h3>4.6 Formatting a Date Value as a String</h3>
+  <script>
+    // Function to format a date as a string
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+}
+const formattedDate = formatDate(new Date());
+console.log('Formatted Date:', formattedDate);
+  </script>
+</body>
+</html>

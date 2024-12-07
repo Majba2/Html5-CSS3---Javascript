@@ -1,0 +1,49 @@
+:root {
+    --a-global-color: red;
+    }
+    section {
+    --a-local-color: rgb(207, 10, 10);
+    }
+    header {
+    color: var(--a-global-color);
+    }
+    footer {
+    color: var(--a-local-color);
+    }
+    body {
+        font-size: 12px;
+        counter-reset: my-section;
+        }
+        h3 {
+        counter-reset: my-sub-section;
+        }
+        h3::before {
+        counter-increment: my-section;content: "Section " counter(my-section) ". ";
+    }
+    h3::before {
+    counter-increment: my-sub-section;
+    content: counter(my-section) "." counter(my-sub-section) " ";
+    }
+  menu
+  {
+    text-align: center;
+    font-size: larger;
+    background-color: bisque;
+  }
+  p{
+    text-align: center;
+    font-size: x-large;
+   background-color: aquamarine;
+  }
+  .class
+  {
+    text-align: end;
+    box-sizing: border-box;
+    background-color: rgb(30, 37, 37);
+    color: white;
+    font-style: italic;
+  }
+  .class h3{
+    background-color: rgb(92, 166, 120);
+  }
+    

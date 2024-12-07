@@ -1,0 +1,55 @@
+p {
+    color: rgb(126, 214, 48);
+    border: 1px solid red;
+    border: 1px solid red;
+    width: 380px;
+    height: 80px;
+    background-image: url("bgg.jpg");
+    background-repeat: repeat-y;
+    background-repeat: space;
+    background-repeat: round;
+    background-position: right top;
+    background-size: 100px 100px;
+
+    }
+.ccc
+    {
+        color: rgba(110, 9, 203, 0.729);
+        text-shadow: 1px 2px 3px;
+        text-transform: lowercase;
+        background-image: url(bggg.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-size: cover;
+        background-size: 50% 66%;
+    }
+    .bg {
+        background-image: none;
+        border: 10px dotted black;
+        padding: 20px;
+        background: yellow;
+        }
+        .padding {
+        background-clip: padding-box;
+        }
+        .content {
+        background-clip: content-box;
+        }
+        .fffff
+        {
+            width: 120px;
+height: 200px;
+overflow: auto;
+border: 1px solid black;
+background-image: url("bgg.jpg");
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: local;
+
+        }
+        div
+        {
+            height: 100px;
+            background: repeating-radial-gradient(red, yellow 10%,
+            green 20%);
+        }

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Chapter-6
+        </title>
+    </head>
+<body> 
+<h1 style="text-align: center;">CHAPTER 6 <br>
+    Functions</h1>
+    <h3>6.1 Passing a Function as an Argument to Another Function</h3>
+<script>
+function fun_inner(value) {
+        return 'Passing a Function as an Argument to Another Function';
+    }
+
+    function fun_outer(func) {
+        console.log(func());  
+    }
+    fun_outer(fun_inner);
+  </script>  
+  <h3>6.2 Using Arrow Functions</h3>
+  <script>
+      const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      const squares = data.map(data => data ** 2);
+      console.log(`Squre value: `,squares);
+  </script>
+  <h3>6.3 Providing a Default Parameter Value</h3>
+  <script>
+    //add function
+    function sumOfNumbers(firstNum, secondNum, thirdNum=0) 
+  {
+ return firstNum+secondNum+thirdNum;
+  }
+  console.log(`Frist sum: `,sumOfNumbers( 42, 6, 76)); 
+  console.log( `Second sum : `,sumOfNumbers( 55, 6, 87)); 
+  function sumOfNumbersWithMultiplier(firstNum=10, secondNum=20, thirdNum=30, multiplier=5) {
+ return multiplier*(firstNum+secondNum+thirdNum);
+} 
+console.log(`Sum of multiplication: `,sumOfNumbersWithMultiplier());
+  </script>
+<h3>6.4 Creating a Function That Accepts Unlimited Arguments</h3>
+<script>
+function multiplyRounds(...values) {
+    let product = 1;
+    for (let i = 0; i < values.length; i += 1) {
+        product *= Math.round(values[i]);
+    }
+    return product;
+}
+console.log(`Multiplication: `,multiplyRounds(1.9, 3.7, 2.5, 5.1, 6.8));  
+</script>
+<h3>6.5 Using Named Function Parameters</h3>
+<script>
+function numberDifference(newerNumber, olderNumber, { precision } = {}) 
+{
+    const difference = newerNumber - olderNumber;
+    return difference.toFixed(precision);
+}
+// Example usage
+const number1 = 150.75;
+const number2 = 123.42;
+const options = { precision: 3 };
+console.log(`Difference: `, numberDifference(number1, number2, options));
+</script>
+<h3>6.6 Creating a Function That Stores its State with a Closure</h3>
+<script>
+function greetingMaker(greeting) 
+{
+    return function(name, timeOfDay) {
+        return `${greeting}, ${name}. It's ${timeOfDay}!`;
+    };
+}
+const morningGreeting = greetingMaker('Good Morning');
+const eveningGreeting = greetingMaker('Good Evening');
+
+console.log(morningGreeting('Majba', 'morning')); 
+console.log(eveningGreeting('Fahim', 'evening'));   
+</script>
+<h3>6.7 Creating a Generator Function That Yields  Multiple Values</h3>
+<script>
+function* generateFruits()
+ {
+    yield "Apple";       
+    yield "Banana";      
+    yield "Cherry";      
+    yield "Dragonfruit"; 
+}
+const fruitGenerator = generateFruits(); 
+console.log(fruitGenerator.next().value); 
+console.log(fruitGenerator.next().value); 
+console.log(fruitGenerator.next().value); 
+console.log(fruitGenerator.next().value); 
+</script>
+<h3>6.8 Reducing Redundancy by Using Partial Application</h3>
+<script>
+function formatName(firstName, lastName) 
+{
+    return `${firstName} ${lastName}`;
+}
+function fullName(name) 
+{
+    return formatName(name, "Mohammed Majba Uddin"); 
+}
+function firstNameOnly(name)
+ {
+    return formatName(name, "Majba"); 
+}
+function signature(name) {
+    return formatName(name, "majba."); 
+}
+console.log(fullName(`FullName: `," "));     
+console.log(firstNameOnly(`FristName: `,"")); 
+console.log(signature(`Signature: `,""));     
+
+</script>
+<h3>6.9 Fixing this with Function Binding</h3>
+<script>
+window.onload = function() {  
+    window.name = 'window';
+    const newObject = {
+        name: 'majba', 
+        sayGreeting: function() {
+            console.log(`Hello from , ${this.name}`); 
+
+
+            const nestedGreeting = function(greeting) {
+                console.log(`${greeting} from ${this.name}`);
+            }.bind(this);
+
+            nestedGreeting('Hello');
+        }
+    };
+    newObject.sayGreeting(); 
+};
+</script>
+<h3>6.10 Implementing a Recursive Algorithm</h3>
+<script>
+function isPrime(n, divisor = 2)
+ {
+
+    if (n <= 1) return false;
+    if (divisor > Math.sqrt(n)) return true;
+    if (n % divisor === 0) return false;
+    return isPrime(n, divisor + 1);
+}
+console.log(isPrime(11)); 
+console.log(isPrime(15)); 
+console.log(isPrime(23)); 
+console.log(isPrime(1));  
+</script>
+</body>
+</html>

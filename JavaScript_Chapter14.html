@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter_14</title>
+    <style>
+        div {
+        margin: 10px;
+        }
+        .data {
+        width: 300px;
+        height: 20px;
+        background-color: rgb(156, 156, 142);
+        padding: 10px;
+        }
+        </style>
+</head>
+<body style="background-color: aquamarine;">
+        <h1>Store, retrieve, and delete a cookie:</h1>
+        <form>
+        <div>
+        <label for="key"> Enter key:</label>
+        <input type="text" id="key" />
+        </div>
+        <div>
+        <label for="value">Enter value:</label>
+        <input type="text" id="value" />
+        </div>
+        </form>
+        <button id="set">Set data</button>
+        <button id="get">Get data</button>
+        <button id="erase">Erase data</button>
+        <p>Cookie value:</p>
+        <div id="cookiestr" class="data"></div>
+        <h2>Simple Data Storage</h2>
+  
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name">
+        <br>
+        <button id="save">Save Data</button>
+        <button id="show">Show Data</button>
+        <button id="clear">Clear Data</button>
+      
+        <p id="output"></p>
+        <h2>Form Backup with localStorage </h2>
+  
+  <form id="backupForm">
+    <div>
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username">
+    </div>
+    <div>
+      <label for="email">Enter your email:</label>
+      <input type="text" id="email">
+    </div>
+    <br>
+    <input style="text-align: center;" type="submit" value="Clear Storage">
+  </form>
+    <script style=" text-align: center;" src="Chapter14.js">
+    </script>
+    <script>
+      //Local_storage
+let names = prompt("Enter Your name to set");
+let val = prompt("Enter the value you want to set!");
+ localStorage.setItem(names, val);
+ console.log(`The name  ${name} is value ${localStorage.getItem(names)}`);
+ if (names=="Majba" || val==5 )
+     {
+       localStorage.removeItem(names,val);     }
+    if( names==0)
+        {
+         console.log(localStorage.clear);
+         }
+
+document.cookie = 'author=maja';
+console.log(document.cookie);
+
+// set the cookie
+function setData() {
+    const formKey = document.getElementById('key').value;
+    const formValue = document.getElementById('value').value;
+    const cookieVal = `${formKey}=${encodeURIComponent(formValue)}`;
+    document.cookie = cookieVal;
+   }
+   // retrieve the cookie value for a specified key
+   function getData() {
+    const key = document.getElementById('key').value;
+    const cookie = document.getElementById('cookiestr');
+    cookie.innerHTML = '';
+    const keyValue = key.replace(/([.*+?^=!:${}()|[\]/\\])/g, '\\$1');
+    const regex = new RegExp(`(?:^|;)\\s?${keyValue}=(.*?)(?:;|$)`, 'i');
+    const match = document.cookie.match(regex);
+    const value = (match && decodeURIComponent(match[1])) || '';
+    cookie.innerHTML = `<p>${value}</p>`;
+   }
+   // remove the cookie for a specified key
+   function removeData() {
+    const key = document.getElementById('key').value;
+    document.getElementById('cookiestr').innerHTML = '';
+    const cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
+    document.cookie = cookie;
+   }
+   document.getElementById('set').onclick = setData;
+   document.getElementById('get').onclick = getData;
+   document.getElementById('erase').onclick = removeData;
+   //seasion storage
+   sessionStorage.setItem('name', 'Bangaldesh');
+sessionStorage.city = 'Dhaka';
+// returns 2
+console.log(sessionStorage.length);
+// retrieve individual values
+const name = sessionStorage.getItem('name');
+const city = sessionStorage.getItem('city');
+console.log(`The stored name is ${name}`);
+console.log(`The stored city is ${city}`);
+// remove an individual item from storage
+sessionStorage.removeItem('name');
+// remove all items from storage
+// sessionStorage.clear();
+// returns 0
+console.log(sessionStorage.length);
+// Set data in sessionStorage and localStorage
+function saveData() {
+    const name = document.getElementById('name').value;
+    
+    // Set sessionStorage and localStorage
+    sessionStorage.setItem('name', name);
+    localStorage.setItem('name', name);
+  }
+  
+  // Show data from sessionStorage and localStorage
+  function showData() {
+    const sessionName = sessionStorage.getItem('name');
+    const localName = localStorage.getItem('name');
+  
+    document.getElementById('output').innerHTML = `
+      <p>Session Storage: ${sessionName}</p>
+      <p>Local Storage: ${localName}</p>
+    `;
+  }
+  
+  // Clear data from sessionStorage and localStorage
+  function clearData() {
+    sessionStorage.removeItem('name');
+    localStorage.removeItem('name');
+    document.getElementById('output').innerHTML = `<p>Data cleared</p>`;
+  }
+  
+  // Event listeners for buttons
+  document.getElementById('save').onclick = saveData;
+  document.getElementById('show').onclick = showData;
+  document.getElementById('clear').onclick = clearData;
+// Reference the form input elements
+const usernameField = document.getElementById('username');
+const emailField = document.getElementById('email');
+
+// Save the field values in localStorage when changed
+usernameField.onchange = function() {
+  localStorage.setItem('username', usernameField.value);
+};
+
+emailField.onchange = function() {
+  localStorage.setItem('email', emailField.value);
+};
+
+// Check and restore the saved values from localStorage when the page loads
+if (localStorage.getItem('username')) {
+  usernameField.value = localStorage.getItem('username');
+}
+
+if (localStorage.getItem('email')) {
+  emailField.value = localStorage.getItem('email');
+}
+
+// Clear the localStorage data when the form is submitted
+document.getElementById('backupForm').onsubmit = function() {
+  localStorage.removeItem('username');
+  localStorage.removeItem('email');
+};
+  // IndexedDB
+  const students = [
+    { name: 'Majba', age: 22 },
+    { name: 'Arafat', age: 21 }
+  ];
+  const dbRequest = indexedDB.open('StudentDB', 1);
+  
+  dbRequest.onupgradeneeded = event => {
+    const db = event.target.result;
+  
+    const objectStore = db.createObjectStore('students', { keyPath: 'id', autoIncrement: true });
+    objectStore.createIndex('name', 'name', { unique: true });
+    objectStore.createIndex('age', 'age', { unique: false });
+  };
+  dbRequest.onsuccess = event => {
+    const db = event.target.result;
+    const transaction = db.transaction(['students'], 'readwrite');
+    const store = transaction.objectStore('students');
+  
+    students.forEach(student => {
+      const addRequest = store.add(student);
+
+      addRequest.onsuccess = () => {
+        console.log(`Student added: ${student.name}`);
+      };
+  
+      addRequest.onerror = () => {
+        console.log('Error adding student:', student.name);
+      };
+    });
+  
+    transaction.oncomplete = () => {
+      console.log('All students added to IndexedDB');
+    };
+
+   transaction.onerror = event => {
+      console.log('Transaction error:', event.target.error);
+    };
+  };
+  dbRequest.onerror = event => {
+    console.log('Error opening database:', event.target.error);
+  };
+  
+    </script>
+</body>
+</html>

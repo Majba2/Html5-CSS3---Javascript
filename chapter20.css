@@ -1,0 +1,51 @@
+@keyframes my-animation {
+    0% {
+    background-color: red;
+    }
+    25% {
+    background-color: yellow;
+    }
+    50% {
+    background-color: blue;
+    }
+    100% {
+    background-color: green;
+    }
+    }
+    div {
+    width: 200px;
+    height: 150px;
+    background-color: cyan;
+    animation-name: my-animation;
+    animation-duration: 4s;
+    animation-iteration-count: 3;
+    transition: width 2s;
+    }
+    div:hover {
+        width: 300px;
+        }
+    @keyframes my-animation {
+        0% {
+        background-color: red;
+        }
+        25% {
+        background-color: yellow;
+        }
+        50% {
+        background-color: blue;
+        }
+        100% {
+        background-color: green;
+        }
+        }
+      pre {
+        text-align: center;
+        font-family: Impact, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial Narrow Bold', sans-serif;
+        color: black ;
+        width: 650px;
+        height: 100px;
+        background-color: rgb(155, 198, 198);
+        animation-name: my-animation;
+        animation-duration: 4s;
+        animation-delay: 1s;
+        }

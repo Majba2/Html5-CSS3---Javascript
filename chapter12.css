@@ -1,0 +1,47 @@
+body
+{
+    background-color: aquamarine;
+}
+.my-text.main {
+    color: red;
+    }
+    .my-text {
+    color: blue;
+    }
+    :link {
+        color: green;
+        }
+        :visited {
+        color: red;
+        }
+        button:focus {
+            color: red;
+            }
+            button:hover {
+            color: green;
+            }
+            button:active {
+            color: blue;
+            }
+            input:checked + span {
+                color: red;
+                }
+                input:invalid {
+                    background-color: lightpink;
+                    }  
+                    input:required {
+                        background-color: lightgreen;
+                        }      
+                        input:out-of-range {
+                            background-color: lightblue;
+                            }   
+                            input:not([type="submit"]) {
+                                background-color: cyan;
+                                }
+                                .required::before {
+                                    content: "* ";
+                                    color: red;
+                                    }
+                                    [class*="word"] {
+                                        color: red;
+                                        }

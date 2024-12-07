@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chapter-5</title>
+</head>
+<h1>CHAPTER 5 <br>
+    Arrays</h1>
+<body>
+    <h3>5.1 Checking If an Object Is an Array</h3>
+    <script>
+        const humanNames = ['Arafat', 'Samaul', 'Samiul', 'Jaber', 'Habib'];
+if (Array.isArray(humanNames)) {
+console.log(humanNames[2]);
+}
+</script>
+<h3>5.2 Iterating Over All the Elements in an Array</h3>
+<script>
+const flowerNames=["Rose", "Tulip", "Daisy", "Sunflower", "Lily", "Orchid", "Chrysanthemum", "Daffodil", "Peony", "Hydrangea"]
+for (const flower of flowerNames)
+ {
+ console.log(flower);
+}
+</script>
+<h3>5.3 Checking If Two Arrays Are Equal</h3>
+<script>
+function areArraysEqual(firstArray, secondArray) {
+    if (!Array.isArray(firstArray) || !Array.isArray(secondArray)) {
+        return false;
+    }
+    else if (firstArray === secondArray) {
+        return true;
+    }
+    else if (firstArray.length !== secondArray.length) {
+        return false;
+    }
+    else {
+        for (let i = 0; i < firstArray.length; ++i) {
+            // Check for equal dates
+            if (firstArray[i] instanceof Date && secondArray[i] instanceof Date) {
+                if (firstArray[i].getTime() !== secondArray[i].getTime()) return false;
+            }
+            else {
+                // Use the normal strict equality check
+                if (firstArray[i] !== secondArray[i]) return false;
+            }
+        }
+        return true;
+    }
+}
+const firstArray = [1, 2, new Date(2023, 8, 30)];
+const secondArray = [1, 2, new Date(2023, 8, 30)];
+const thirdArray = [1, 2, new Date(2024, 8, 30)];
+
+console.log(areArraysEqual(firstArray, secondArray));
+console.log(areArraysEqual(firstArray, secondArray)); 
+</script>
+<h3>5.4 Breaking Down an Array into Separate Variables</h3>
+<script>
+const stateNumbers = [459, 144, 96, 34, 0, 14];
+const [arizona, missouri, idaho, nebraska, texas, minnesota,...others] = stateNumbers;
+console.log(missouri);
+console.log(others);
+</script>
+<h3>5.5 Passing an Array to a Function That Expects a List of Values </h3>
+<script>
+    const values = [243, 420, 56, 304, 14, 134];
+const findMax = Math.max(values);
+console.log(findMax); 
+const maxValue = Math.max(...values); //max value 
+console.log(maxValue); 
+</script>
+<h3>5.6 Cloning an Array</h3>
+<script>
+const original = [1, 2, 3, 4, 5,6,7,8,9,10];
+const copy = [...original];   //cloning orginal array.
+// Modify the cloned array
+copy[0] = 100;
+copy[1]=203;
+console.log('Original Array :', original);
+console.log('Clone Array :', copy); 
+</script>
+<h3>5.7 Merging Two Arrays</h3>
+<script>
+const pairs = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+const unpaired = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
+const marged=[...pairs,...unpaired];
+console.log(marged);
+</script>
+<h3>5.8 Copying a Portion of an Array by Position</h3>
+<script>
+const fish = [
+    "Salmon","Tuna", "Trout", "Goldfish", "Catfish",  "Shark","Bass", "Herring","Sardine", "Mackerel"
+];
+const cut=fish.slice(2,8);
+console.log(cut);
+</script>
+<h3>5.9 Extracting Array Items That Meet Specific Criteria</h3>
+<script>
+const vegetables =
+ [
+    "Tomato", "Turnip", "Taro", "Thyme", "Potato",  "Turmeric", "salad","Tapioca", "ginger", "ledy finger"
+];
+
+
+    function startsWithT(vegetables) {
+ return vegetables[0].toLowerCase() === 't';
+}
+const vegetablesT=vegetables.filter(startsWithT);
+console.log(vegetablesT);
+</script>
+<h3>5.10 Emptying an Array</h3>
+<script>
+const val = [33,99,78,4,2, 42, 5, 304, 1, 13];
+val.length = 2;
+console.log(val);
+</script>
+<h3>5.11 Removing Duplicate Values</h3>
+<script>
+const duplicateValues = [2, 42, 1,5,5, 42, 304, 1, 13, 2, 13,8,9,55,9,8];
+const uniqueValues = [...new Set(duplicateValues)];
+console.log(`removing all duplicates : `,uniqueValues);
+</script>
+<h3>5.12 Flattening a Two-Dimensional Array</h3>
+<script>
+const animalArray = [];
+animalArray[0] = ['lion', 'tiger', 'leopard'];
+animalArray[1] = ['elephant', 'giraffe', 'hippopotamus'];
+animalArray[2] = ['kangaroo', 'koala', 'panda'];
+// Flattening the array
+const animalList = animalArray.flat();
+console.log(`Combined: `,animalList); 
+</script>
+<h3>5.13 Searching Through an Array for Exact Matches</h3>
+<script>
+const birds = ['sparrow', 'eagle', 'parrot', 'pigeon', 'flamingo', 'eagle', 'penguin'];
+const indexOfPigeon = birds.indexOf('pigeon');            // Finding the index of 'pigeon'
+console.log(`Index of 'pigeon': ${indexOfPigeon}`);        // Finding the last index of 'eagle'
+const lastIndexOfEagle = birds.lastIndexOf('eagle');
+console.log(`Last index of 'eagle': ${lastIndexOfEagle}`); 
+const containsSparrow = birds.includes('sparrow');           // Checking if 'sparrow' exists in the array
+console.log(`Does the array contain 'sparrow'? ${containsSparrow}`); 
+const indexOfEagleFromIndex2 = birds.indexOf('eagle', 2);      // Finding the index of 'eagle' starting from index 2
+console.log(`'eagle' starting from index 2: ${indexOfEagleFromIndex2}`); 
+</script>
+</body>
+</html>

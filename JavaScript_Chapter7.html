@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+</head>
+<h1 style="text-align: center;">Chapter-7 <br>
+    Objects:
+</h1>
+<body>
+    <h2>7.1Checking if an Object Is a Certain Type</h2>
+    <script>
+        /// 1. Checking with instanceof
+const carObject = 
+{
+     brand: 'BMW',
+     model: 'B-2022' 
+}; 
+if (carObject instanceof Object) {
+    console.log('It is true!'); 
+} else {
+    console.log('False! it is not instance of car.');
+}
+// 2. Checking with typeof for primitive values
+const Age = 22;
+const Name = 'Mohammed Majba Uddin';
+
+if (typeof Age === 'number') {
+    console.log('Age is a number');
+}
+
+if (typeof Name === 'string') {
+    console.log('Name is a string');
+}
+// 3. Checking with instanceof for complex objects
+const currentDate = new Date();
+if (currentDate instanceof Date) {
+    console.log('currentDate is an instance of Date'); 
+}
+// 4. Checking with typeof for different types
+const isStudent = true;
+const undefinedVariable = undefined;
+if (typeof isStudent === 'boolean') {
+    console.log('He is a student');
+}
+if (typeof undefinedVariable === 'undefined') {
+    console.log('undefinedVariable is undefined'); 
+}
+// 5. Checking using not (!) with instanceof
+if (!(carObject instanceof Date)) {
+    console.log('carObject is not an instance of Date');
+}
+   </script>
+   <h3>7.2-Using an Object Literal to Bundle Data</h3>
+   <script>
+    const teacher =          //Using Object literal data to create teacher object!
+     {
+        teacherId: 65,
+        firstName: 'Aimun',
+        lastName: 'Nesa',
+        subject: 'CSE',
+        address: {
+            street: '1200 Mirpur rd-15',
+            city: 'Dhaka',
+            country: 'Bangladesh'
+        }
+    };
+    console.log('Teacher Name:', teacher.firstName + ' ' + teacher.lastName); 
+    console.log('Subject:', teacher.subject); 
+
+    teacher.experience = 6; 
+    console.log('Experience:', teacher.experience + ' years'); 
+
+    console.log('City:', teacher.address.city);
+
+    const qualificationProperty = 'highestQualification';  //using Computed Property Names to add property
+    const qualificationValue = 'Masters in CSE';
+    
+    teacher[qualificationProperty] = qualificationValue; 
+    console.log('Highest Qualification:', teacher.highestQualification); 
+    const yearsInServiceProperty = 'yearsInService';
+    teacher[yearsInServiceProperty] = 6; 
+    console.log('Years in Service:', teacher.yearsInService); 
+    console.log('Teacher ID:', teacher['teacherId']);
+    console.log(`Teacher Profile:
+    Name: ${teacher.firstName} ${teacher.lastName}
+    Subject: ${teacher.subject}
+    Experience: ${teacher.experience} years
+    Qualification: ${teacher.highestQualification}
+    City: ${teacher.address.city}, ${teacher.address.country}
+    Years in Service: ${teacher.yearsInService}`);
+    </script>
+    <h2>7.3-Checking If an Object Has a Property</h2>
+    <script>
+const student = {
+    studentId: 1284931,
+    firstName: 'Mohammed',
+    lastName: 'Majba',
+    course: 'CSE',
+    address: {
+        city: 'Dhaka',
+        country: 'Bangladesh'
+    }
+};
+if ('studentId' in student) // Checking with  'in' operator
+{
+    console.log('studentId exists in the student object.');  
+ } else {
+    console.log('studentId does not exist in the student object.');
+}
+
+if ('age' in student) {
+    console.log('age exists in the student object.');
+} else {
+    console.log('age does not exist in the student object.');
+}
+console.log(student.hasOwnProperty('firstName'));   // 2.Checking with 'hasOwnProperty()
+console.log(student.hasOwnProperty('city'));
+if ('city' in student.address) {
+    console.log('City exists in student.address.');
+}
+console.log(student.address.hasOwnProperty('country')); 
+    </script>
+    <h2>7.4-Iterating Over All the Properties of an Object</h2>
+    <script>
+        const teacher1 =           // Teacher object with multiple properties
+        {
+            firstName: 'Kazi',
+            lastName: 'Sayef',
+            subject: 'Accounting',
+            experience: 8,
+            country: 'Bangladesh'
+        };  
+        const teacherProperties = Object.keys(teacher1);     // Using Object.keys() to get the properties and iterate over them
+        console.log('Using Object.keys():');
+        for (const property of teacherProperties) {
+            console.log(`Property: ${property}, Value: ${teacher1[property]}`);
+        }
+        console.log('\nUsing for...in loop:');       // Using for...in loop to iterate over the properties
+        for (const property in teacher1) {
+            if (teacher1.hasOwnProperty(property)) {
+                console.log(`Property: ${property}, Value: ${teacher1[property]}`);
+            }
+        }
+        </script>
+        <h2>7.5-Testing for an Empty Object</h2>
+        <script>
+            // Create a user object
+const user = {
+    username: 'samiul',
+    email: 'samiul@email.com'
+};
+// Check if the user object is empty
+if (Object.keys(user).length === 0)
+{
+    console.log("The user object is empty."); 
+} else 
+{
+    console.log("The user object is not empty.");
+}
+delete user.username;
+delete user.email;
+// Check again if the user object is empty
+if (Object.keys(user).length === 0) 
+{
+    console.log("The user object is empty now.");
+} else 
+{
+    console.log("The user object still has properties."); 
+}
+ </script>
+ <h2>7.6-Merging the Properties of Two Objects</h2>
+ <script>
+    // Create an object for user details
+const userDetails = 
+{
+    username: 'majba_uddin',
+    email: 'majba@gmail.com',
+    age: 22
+};
+
+// Create an object for user preferences
+const userPreferences = 
+{
+    theme: 'dark',
+    language: 'English',
+    email: 'majba@gmail.com', 
+};
+// Merge the two objects using the spread operator
+const mergedUser = { ...userDetails, ...userPreferences };
+
+// Display the merged object
+console.log(mergedUser);
+console.log(`Email: ${mergedUser.email}`); 
+// Check for a conflict in properties
+if (userDetails.email !== userPreferences.email) 
+{
+    console.log("here will be the emailaddress of userpreference" ,userPreferences.email);
+}
+ </script>
+ <h2>7.7-Customizing the Way a Property Is Defined</h2>
+ <script>
+// Create an object to hold user data
+const student2 = {};
+Object.defineProperty(student2, 'studentName',      
+{
+    value: 'haib',
+    writable: false,  
+    enumerable: true  
+});
+Object.defineProperty(student2, 'age',            // Define a modifiable property for age
+ {
+    value: 22,
+    writable: true,   
+    enumerable: false 
+});
+// Testing the properties
+console.log(student2.studentName); 
+
+// Attempt to change the read-only property
+student2.studentName = 'majba';
+console.log(student2.studentName); 
+
+console.log(student2.age);  // Define a new age value
+student2.age = 30; 
+console.log(student2.age); 
+for (const prop in student2) {
+    console.log(prop); 
+}
+ </script>
+ <h2>7.8-Preventing Any Changes to an Object</h2>
+ <script>
+const book = {
+    title: 'JavaScript: Cook Book',
+    author: 'Adam D.Scott',
+    year: 2008
+};
+// Freeze the object to prevent any changes
+Object.freeze(book);
+book.title = 'JavaScript: The Definitive Guide';  // try to change the title
+console.log(book.title); 
+book.publisher = 'O\'Reilly Media';  // try to add a new property
+console.log(book.publisher); 
+delete book.year;          // try to delete an existing property
+console.log(book.year);
+if (Object.isFrozen(book))   // Check if the object is frozen
+{
+    console.log('The book object is frozen and cannot be modified.');
+}
+ </script>
+ <h2>7.9-Intercepting and Changing Actions on an Object
+    with a Proxy</h2>
+ <script>
+    const item = 
+    { name: 'cloths' };
+const propertyChecker = {
+    set(target, property, value) {
+        if (property === 'price') {
+            if (typeof value !== 'number') {
+                throw new TypeError('Price must be a number');
+            }
+            if (value <= 0) {
+                throw new RangeError('Price must be greater than zero');
+            }
+        }
+        target[property] = value;
+    }
+};
+
+const proxy = new Proxy(item, propertyChecker);
+proxy.price = 300; 
+console.log(proxy.price); 
+
+try {
+    proxy.price = 'free'; 
+} catch (error) {
+    console.error(error.message); 
+}
+ </script>
+ <h2>7.10 Cloning an Object</h2>
+ <script>
+const person = 
+{
+    firstName: 'Fahim',
+    lastName: 'Khan',
+    hobbies: ['sleeping', 'traveling', 'coding']
+};
+const personClone = { ...person };   //clonning 
+console.log(personClone.firstName); 
+
+personClone.firstName = 'Samid'; // Modifying the clone's first name
+console.log(personClone.firstName); 
+console.log(person.firstName);  
+
+personClone.hobbies[0] = 'swimming';    // Modifying the hobbies array in the cloned object
+console.log(`clone: `,personClone.hobbies); 
+console.log(person.hobbies); 
+ </script>
+ <h2>7.11 Making a Deep Copy of an Object</h2>
+ <script>
+const movie =
+ {
+    title: 'Interstaller',
+    director: {
+        firstName: 'Christopher',
+        lastName: 'Nolan'
+    },
+    ratings: [9, 8, 10]
+};
+
+function cloneMovie(movie)  //clone object
+{
+    const movieCopy = { ...movie };  
+    movieCopy.director = { ...movie.director };
+    movieCopy.ratings = [...movie.ratings]; 
+    return movieCopy;
+}
+const movieCopy = cloneMovie(movie);  //deep clone
+movieCopy.director.firstName = 'Nolan';
+movieCopy.ratings[0] = 10;
+
+console.log(movie.director.firstName);
+console.log(movieCopy.director.firstName); 
+console.log(movie.ratings[0]); 
+console.log(movieCopy.ratings[0]); 
+ </script>
+ <h3>7.12 Creating Absolutely Unique Object Property Keys</h3>
+ <script>
+const myObject = 
+{
+
+};
+const uniqueKey1 = Symbol('Unique Key 1'); //create  unique property
+myObject[uniqueKey1] = 'This is a unique value';
+const uniqueKey2 = Symbol('Unique Key 2');  //create another unique property
+myObject[uniqueKey2] = 'Another unique value';
+
+console.log(`object`,myObject);
+console.log(myObject[uniqueKey1]);  
+console.log(myObject[uniqueKey2]);  
+ </script>
+ <h3>7.13 Creating Enums with Symbol</h3>
+ <script>
+const WeatherConditions =          // Create an enum 
+ {
+    Sunny: Symbol('sunny'),
+    Rainy: Symbol('rainy'),
+    Cloudy: Symbol('cloudy'),
+    Snowy: Symbol('snowy')
+};
+function weatherAdvice(condition)         //function create for give weather advise
+ {
+    if (condition === WeatherConditions.Sunny) {
+        console.log('It’s a nice day for a picnic.');
+    } else if (condition === WeatherConditions.Rainy) {
+        console.log('Don’t forget your umbrella!');
+    } else if (condition === WeatherConditions.Cloudy) {
+        console.log('take a light jacket with you.');
+    } else if (condition === WeatherConditions.Snowy) {
+        console.log('snow time!');
+    } else {
+        console.log('Unknown weather condition.');
+    }
+}
+weatherAdvice(WeatherConditions.Sunny); 
+weatherAdvice(WeatherConditions.Rainy); 
+weatherAdvice(WeatherConditions.Cloudy); 
+weatherAdvice(WeatherConditions.Snowy); 
+
+ </script>
+</body>
+</html>

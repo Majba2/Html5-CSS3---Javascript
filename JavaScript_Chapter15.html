@@ -1,0 +1,147 @@
+<html>
+<head>
+    <title>Accessing Inline SVG</title>
+    <meta charset="utf-8">
+</head>
+<body style="background-color: bisque;">
+    <h2 style="text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;">Chapter_15: Working With Media</h2>
+    <svg width="400" height="400">
+        <script>
+        // set element onclick event handler
+        window.onload = function() {
+            const square = document.getElementById('square');
+            // onclick event handler, change rectangle color
+            square.onclick = function() {
+                const color = this.getAttribute('fill');
+                // Toggle between green and brown
+                if (color === 'green') {
+                    this.setAttribute('fill', 'brown');
+                } else {
+                    this.setAttribute('fill', 'green');
+                }
+            };
+        };
+        </script>
+        <rect id="square" width="200px" height="200px" fill="green" x="10" y="10" />
+    </svg>
+    <object style="height: 150px; width: 150px; size: 20px;" type="image/svg+xml" data="images/fdfdfd.jpg">
+        <img src="images/fdfdfd.jpg" />
+       </object>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.0/d3.min.js"></script>
+  <script type="text/javascript">
+
+   const data = [30, 70, 50, 90, 100];
+   const height = 200;
+   const barWidth = 30;
+
+   const x = d3
+     .scaleLinear()
+     .domain([0, d3.max(data)])
+     .range([0, height]);
+
+   const svg = d3
+     .select('body')
+     .append('svg')
+     .attr('width', data.length * (barWidth + 5))
+     .attr('height', height);
+
+   svg
+     .selectAll('rect')
+     .data(data)
+     .enter()
+     .append('rect')
+     .attr('fill', '#4682B4')
+     .attr('x', function(d, i) {
+       return i * (barWidth + 5);
+     })
+     .attr('y', function(d) {
+       return height - x(d);
+     })
+     .attr('width', barWidth)
+     .attr('height', x);
+  </script>
+   <h2>SVG and Canvas Example</h2>
+  <!-- SVG container -->
+  <svg id="svgCanvas" width="600" height="400">
+      <!-- Script to handle canvas drawing -->
+      <script type="text/javascript">
+      window.onload = function () {
+          // Getting the canvas element inside the foreignObject
+          var canvas = document.getElementById("myCanvas");
+          var context = canvas.getContext("2d");
+
+          // Fill the canvas with a light blue rectangle (200x150)
+          context.fillStyle = "#87CEFA"; // Sky Blue color
+          context.fillRect(0, 0, 200, 150);
+      };
+      </script>
+      
+      <!-- Adding canvas within foreignObject -->
+      <foreignObject width="300" height="150" x="50" y="50">
+          <canvas width="300" height="150" id="myCanvas">
+              Alternate content for browsers that do not support Canvas
+          </canvas>
+      </foreignObject>
+
+      <!-- Adding a blue circle in the SVG -->
+      <circle id="blueCircle" cx="400" cy="150" r="75" fill="blue" stroke="black" />
+  </svg>
+  
+  <h2>Audio Playback Notifications</h2>
+    
+  <!-- HTML5 Audio element -->
+  <audio id="soundClip" controls>
+      <source src="images/audio song.mp3" type="audio/mpeg" />
+      <p><a href="images/audio song.mp3">Click here to download the sound</a></p>
+  </audio>
+
+  <script>
+      // Capture the audio element
+      const soundClip = document.getElementById('soundClip');
+
+      // Add an event listener for when the audio starts playing
+      soundClip.addEventListener('play', function() {
+          displayMessage('The audio is now playing!');
+      });
+
+      // Add an event listener for when the audio ends
+      soundClip.addEventListener('ended', function() {
+          displayMessage('The audio has finished playing.');
+      });
+
+      // Function to display messages
+      function displayMessage(message) {
+          const div = document.createElement('div');
+          const txt = document.createTextNode(message);
+          div.appendChild(txt);
+          document.body.appendChild(div);
+      }
+  </script>
+  <h2>Welcome to the got world!</h2>
+  <video style="align-items: center;" id="videoPlayer" width="600" height="400" controls>
+      <source src="images/got.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+  </video>
+  <div>
+      <button id="playButton">Play</button>
+      <button id="pauseButton">Pause</button>
+  </div>
+  <script>
+      // Select the video element
+      const video = document.getElementById('videoPlayer');
+  
+      // Add event listener for the play button
+      document.getElementById('playButton').addEventListener('click', () => {
+          video.muted = false; // Make sure the video is not muted
+          video.play(); // Play the video
+      });
+  
+      // Add event listener for the pause button
+      document.getElementById('pauseButton').addEventListener('click', () => {
+          video.pause(); // Pause the video
+      });
+  </script>
+  
+ </body>
+</html>

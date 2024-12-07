@@ -1,0 +1,17 @@
+/* Combined Selector of Tags */
+body h1 {
+    color: #72720d;
+    }
+    /* Type Selector */
+    h1 {
+    color: rgb(244, 244, 229);
+    }
+    .parent {
+        color: rgb(198, 11, 11);
+        }
+        .line {
+        color: green;
+        }
+        .first-line {
+        color: inherit;
+        }
